@@ -1,5 +1,5 @@
 body {
-  background-color: black;
+  background-color: rgb(40, 40, 40);
   color: white;
   padding: 25px;
 }
@@ -17,6 +17,7 @@ body {
   padding: 25px;
   border: 1px solid green;
   border-radius: 5px;
+  width: 50%;
 }
 
 .container textarea {
@@ -30,4 +31,14 @@ body {
 .container input,
 .container textarea {
   padding: 10px;
+}
+
+a {
+  color: green;
+}
+
+pre {
+  width: 100%;
+  overflow: scroll;
+  /* max-height: 300px; */
 }
