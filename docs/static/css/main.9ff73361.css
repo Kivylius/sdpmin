@@ -1,0 +1,2 @@
+body{background-color:#282828;color:#fff;padding:25px}.container{display:flex;flex:1 1 auto;gap:25px;height:100%}.container>div{border:1px solid green;border-radius:5px;flex:auto;padding:25px;width:100%;width:50%}.container textarea{height:300px}.container input,.container textarea{width:calc(100% - 20px)}.container input,.container textarea{padding:10px}a{color:green}pre{overflow:scroll;width:100%}
+/*# sourceMappingURL=main.9ff73361.css.map*/
