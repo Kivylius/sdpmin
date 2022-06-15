@@ -1,51 +1,10 @@
 import "./App.css";
 import { useState } from "react";
-import {
-  reduce,
-  expand,
-  pack,
-  unpack,
-  get_reduced_sdp,
-  get_expanded_sdp,
-} from "./lib";
-// import { pack, unpack } from "sdp-minify";
 import * as sdpTransform from "sdp-transform";
+import { Toaster, toast } from "react-hot-toast";
 
-// unify all the version
-// zip(RTCobj) => sdpZipString string
-// unzip(sdpZipString: string) => RTCobj
-const getVerson = (version) => {
-  switch (version) {
-    case "minimal-webrtc":
-      return {
-        zip: (RTCobj) => reduce(RTCobj),
-        unzip: (sdpZipString) => expand(sdpZipString),
-      };
-    case "sdp-minify":
-      return {
-        zip: (RTCobj) => pack(RTCobj, "UTF16"),
-        unzip: (sdpZipString) => unpack(sdpZipString, "UTF16"),
-      };
-    case "minisdp":
-      return {
-        zip: (RTCobj) => get_reduced_sdp(RTCobj),
-        unzip: (sdpZipString) => get_expanded_sdp(sdpZipString),
-      };
-    default:
-      return {};
-  }
-};
-
-const genWebRTC = async () => {
-  const configuration = {
-    iceServers: [{ urls: "stun:stun.1.google.com:19302" }],
-  };
-  const peerConnection = new RTCPeerConnection(configuration);
-  const sendChannel = peerConnection.createDataChannel("sendChannel");
-  const offer = await peerConnection.createOffer();
-  await peerConnection.setLocalDescription(offer);
-  return { offer, sendChannel };
-};
+import { getVerson } from "./utils/getVersion";
+import { genWebRTC } from "./utils/genWebRTC";
 
 const App = () => {
   const [version, setVersion] = useState("minimal-webrtc");
@@ -55,10 +14,11 @@ const App = () => {
   const onChangeZip = (e) => {
     const { value } = e.target;
     try {
+      value === "" && setZipValue({ sdp: "" });
       const parsed = JSON.parse(value);
       setZipValue(parsed);
     } catch (e) {
-      console.error(e);
+      toast.error(e.toString());
     }
   };
 
@@ -66,10 +26,11 @@ const App = () => {
   const onChangeUnzip = (e) => {
     const { value } = e.target;
     try {
+      value === "" && setUnzipValue("");
       unzip(value);
       setUnzipValue(value);
     } catch (e) {
-      console.log(e);
+      toast.error(e.toString());
     }
   };
 
@@ -102,7 +63,8 @@ const App = () => {
 
   return (
     <div>
-      <h1>SDPM</h1>
+      <Toaster position="top-right" />
+      <h1>🗜️ SDPM</h1>
       <p>
         In the demo bellow you can pack (compress) and unpack sdp connection
         strings. You can also generate them if you dont already have one.
@@ -110,12 +72,10 @@ const App = () => {
       <div>
         Version:{" "}
         <select onChange={onChangeVersion}>
-          <option disabled value="sdpm">
-            sdpm (TODO) ⭐
-          </option>
           <option value="minimal-webrtc">minimal-webrtc</option>
           <option value="sdp-minify">sdp-minify</option>
           <option value="minisdp">minisdp</option>
+          <option value="sdpm">[wip] sdpm</option>
         </select>
         <br />
         <br />
@@ -131,6 +91,7 @@ const App = () => {
             )
           </label>
           <textarea
+            placeholder="paste sdp json here (must be valid) or generate above"
             onChange={onChangeZip}
             value={zipValue.sdp ? JSON.stringify(zipValue) : ""}
           ></textarea>
@@ -140,13 +101,12 @@ const App = () => {
           <br />
           <br />
           <label>WebRTC String Output</label>
-          <br />
           <input disabled value={zipValue.sdp ? zip(zipValue) : ""}></input>
           <small>
             Length: {(zipValue.sdp ? zip(zipValue) : "").length} (
             {outputCompresion}% compresion)
           </small>
-          <hr />
+          <br />
           <h4>Debugger:</h4>
           <pre>
             {JSON.stringify(
@@ -166,8 +126,11 @@ const App = () => {
             </a>
             )
           </label>
-          <br />
-          <input onChange={onChangeUnzip} value={unzipValue}></input>
+          <input
+            placeholder="paste webrtc string here (must be valid) or generate above"
+            onChange={onChangeUnzip}
+            value={unzipValue}
+          ></input>
           <small>Length: {unzipValue.length}</small>
           <br />
           <br />
@@ -177,14 +140,12 @@ const App = () => {
             value={unzipValue ? JSON.stringify(jsonOutput) : undefined}
           ></textarea>
           <small>Length: {jsonOutput ? jsonOutput.sdp.length : "0"}</small>
-          <hr />
+          <br />
           <h4>Debugger:</h4>
           <pre>
-            {JSON.stringify(
-              unzipValue ? sdpTransform.parse(jsonOutput.sdp) : undefined,
-              null,
-              4
-            )}
+            {unzipValue
+              ? JSON.stringify(sdpTransform.parse(jsonOutput.sdp), null, 4)
+              : "// debug output"}
           </pre>
         </div>
       </div>

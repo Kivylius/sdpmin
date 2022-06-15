@@ -1,3 +1,7 @@
+// this file containers all exteral libraries
+// to compare and contract the different
+// pack alagorithims.
+
 function reduce(desc) {
   var sdp = desc.sdp;
   var lines = sdp.split("\r\n");
