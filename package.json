@@ -1,7 +1,10 @@
 {
   "name": "sdpm",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
+  "module": "src/lib/index.js",
+  "main": "src/lib/index.js",
+  "sideEffects": false,
   "homepage": "https://kivylius.github.io/sdpm/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -37,5 +40,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.19.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1"
   }
 }

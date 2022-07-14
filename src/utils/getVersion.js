@@ -6,7 +6,7 @@ import {
   get_reduced_sdp,
   get_expanded_sdp,
 } from "./libs";
-import { sdpm } from "./sdpm";
+import { packV0, unpackV0 } from "../lib";
 
 // unify all the version
 // zip(RTCobj) => sdpZipString string
@@ -15,8 +15,8 @@ export const getVerson = (version) => {
   switch (version) {
     case "sdpm":
       return {
-        zip: (RTCobj) => sdpm.pack(RTCobj),
-        unzip: (sdpZipString) => sdpm.unpack(sdpZipString),
+        zip: (RTCobj) => packV0(RTCobj),
+        unzip: (sdpZipString) => unpackV0(sdpZipString),
       };
     case "minimal-webrtc":
       return {

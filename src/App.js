@@ -72,7 +72,11 @@ const App = () => {
       <div>
         Version:{" "}
         <select onChange={onChangeVersion}>
-          <option value="sdpm">[wip] sdpm</option>
+          <option value="sdpm">[wip] sdpm v0</option>
+          <option disabled value="sdpmv1">
+            [todo] sdpm v1
+          </option>
+          <option disabled>--</option>
           <option value="minimal-webrtc">(old) minimal-webrtc</option>
           <option value="sdp-minify">(old) sdp-minify</option>
           <option value="minisdp">(old) minisdp</option>
