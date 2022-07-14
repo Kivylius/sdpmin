@@ -13,3 +13,5 @@ coverage
 # don't link jest config
 
 jest.config.js
+
+src/utils/libs.js

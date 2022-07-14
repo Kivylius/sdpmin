@@ -1,4 +1,5 @@
 export const genWebRTC = async () =>
+  // eslint-disable-next-line no-async-promise-executor
   new Promise(async (r) => {
     const configuration = {
       iceServers: [{ urls: "stun:stun.stunprotocol.org" }],
