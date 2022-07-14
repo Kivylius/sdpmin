@@ -1,6 +1,6 @@
 {
   "name": "sdpmin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "module": "src/lib/index.js",
   "main": "lib/index.js",
