@@ -7,7 +7,7 @@ import { getVerson } from "./utils/getVersion";
 import { genWebRTC } from "./utils/genWebRTC";
 
 const App = () => {
-  const [version, setVersion] = useState("minimal-webrtc");
+  const [version, setVersion] = useState("sdpm");
   const { zip, unzip } = getVerson(version);
 
   const [zipValue, setZipValue] = useState({ sdp: "" });
@@ -72,10 +72,10 @@ const App = () => {
       <div>
         Version:{" "}
         <select onChange={onChangeVersion}>
-          <option value="minimal-webrtc">minimal-webrtc</option>
-          <option value="sdp-minify">sdp-minify</option>
-          <option value="minisdp">minisdp</option>
           <option value="sdpm">[wip] sdpm</option>
+          <option value="minimal-webrtc">(old) minimal-webrtc</option>
+          <option value="sdp-minify">(old) sdp-minify</option>
+          <option value="minisdp">(old) minisdp</option>
         </select>
         <br />
         <br />
