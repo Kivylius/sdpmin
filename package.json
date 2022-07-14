@@ -3,7 +3,7 @@
   "version": "1.0.3",
   "private": false,
   "module": "src/lib/index.js",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "sideEffects": false,
   "homepage": " https://kivylius.github.io/sdpmin/",
   "dependencies": {
@@ -11,8 +11,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rm -rf docs && mv build docs && ./node_modules/.bin/babel src/lib --out-dir lib",
-    "build:b": "babel --root-mode upward src/lib -d lib",
+    "build": "react-scripts build && rm -rf docs && mv build docs && npm run build:b",
+    "build:b": "babel --root-mode upward src/lib -d dist",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install"

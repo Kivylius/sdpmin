@@ -9,3 +9,11 @@ src/setupTests.js
 .gitignore
 package.json
 package-lock.json
+.eslintignore
+.eslintrc.js
+.gitignore
+.prettierignore
+.prettierrc
+bable.config.json
+.husky
+.vscode
