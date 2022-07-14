@@ -59,6 +59,12 @@ If you have a suggestion that would make this better, please create an issues fi
 ## Support
 
 - NodeJS 12+
+
+```js
+const sdpmin = require('sdpmin');
+const str = sdpmin.pack(...);
+```
+
 - React / Angular / Vue / etc.
 
 ## Inspirations
