@@ -5,13 +5,13 @@ import {
   unpack,
   get_reduced_sdp,
   get_expanded_sdp,
-} from "./libs";
-import { packV0, unpackV0 } from "../lib";
+} from "./libs.js";
+import { packV0, unpackV0 } from "../lib/index.js";
 
 // unify all the version
 // zip(RTCobj) => sdpZipString string
 // unzip(sdpZipString: string) => RTCobj
-export const getVerson = (version) => {
+export function getVerson(version) {
   switch (version) {
     case "sdpm":
       return {
@@ -37,4 +37,4 @@ export const getVerson = (version) => {
     default:
       return {};
   }
-};
+}

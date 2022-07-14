@@ -3,8 +3,8 @@ import { useState } from "react";
 import * as sdpTransform from "sdp-transform";
 import { Toaster, toast } from "react-hot-toast";
 
-import { getVerson } from "./utils/getVersion";
-import { genWebRTC } from "./utils/genWebRTC";
+import { getVerson } from "./utils/getVersion.js";
+import { genWebRTC } from "./utils/genWebRTC.js";
 
 const App = () => {
   const [version, setVersion] = useState("sdpm");
