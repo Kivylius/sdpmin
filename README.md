@@ -5,13 +5,13 @@
 [![Coverage Status](https://coveralls.io/repos/github/gregnb/sdpmin/badge.svg?branch=master)](https://coveralls.io/github/gregnb/sdpmin?branch=master)
 [![npm version](https://badge.fury.io/js/sdpmin.svg)](https://badge.fury.io/js/sdpmin)
 
-_SDPMIN_ or session description protocol minifier is a tool that compresses the [SDP]() [WebRTC offer]() to a tiny string that can be stored in a signaling server or even shared over any messaging platform for a server-less approach.
+_SDPMIN_ or session description protocol minifier is a tool that compresses the [SDP](https://developer.mozilla.org/en-US/docs/Web/API/RTCSessionDescription/sdp) [WebRTC offer]https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/createOffer() to a tiny string that can be stored in a signaling server or even shared over any messaging platform for a server-less approach.
 
 ## Demo
 
 The demo includes a simple playground to showcase the compressing and uncompressing of the SDP offer object.
 
-- [Demo Playground](https://kivylius.github.io/sdpm/)
+- [Demo Playground](https://kivylius.github.io/sdpmin/)
 
 ## Quick Start
 
