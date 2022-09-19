@@ -5,7 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/gregnb/sdpmin/badge.svg?branch=master)](https://coveralls.io/github/gregnb/sdpmin?branch=master)
 [![npm version](https://badge.fury.io/js/sdpmin.svg)](https://badge.fury.io/js/sdpmin)
 
-_SDPMIN_ or session description protocol minifier is a tool that compresses the [SDP](https://developer.mozilla.org/en-US/docs/Web/API/RTCSessionDescription/sdp) [WebRTC offer]https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/createOffer() to a tiny string that can be stored in a signaling server or even shared over any messaging platform for a server-less approach.
+_SDPMIN_ or session description protocol minifier is a tool that compresses the [SDP](https://developer.mozilla.org/en-US/docs/Web/API/RTCSessionDescription/sdp) [WebRTC offer](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/createOffer) to a tiny string that can be stored in a signaling server or even shared over any messaging platform for a server-less approach.
 
 ## Demo
 
@@ -41,8 +41,8 @@ const sdp = unpakcV0(...)
 
 - **v0** - full output without compression.
 - **v1** - default lossless compression.
-- **v2\*** - (todo: soon) Smaller bundle size & lossless compression.
-- **v3\*** - (todo: soon) Aggressive compression that is lossy.
+- **v2\*** - (TODO) Smaller bundle size & lossless compression.
+- **v3\*** - (TODO) Aggressive compression that is lossy.
 
 Check the Demo above for examples outputs.
 
@@ -66,6 +66,10 @@ const str = sdpmin.pack(...);
 ```
 
 - React / Angular / Vue / etc.
+
+```js
+import { pack, unpack } from "sdpmin";
+```
 
 ## Inspirations
 
