@@ -72,7 +72,7 @@ const App = () => {
   return (
     <div>
       <Toaster position="top-right" />
-      <h1>🗜️ SDPM{"  "}</h1>
+      <h1>🗜️ SDPMIN{"  "}</h1>
       <p>
         In the demo bellow you can pack (compress) and unpack sdp connection
         strings. You can also generate them if you dont already have one. <br />
