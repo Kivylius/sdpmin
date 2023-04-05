@@ -1,6 +1,6 @@
 # 🗜️ SDPMIN
 
-[![Build Status](https://travis-ci.org/gregnb/sdpmin.svg?branch=master)](https://travis-ci.org/gregnb/sdpmin)
+[![Build Status](https://camo.githubusercontent.com/83d3746e5881c1867665223424263d8e604df233d0a11aae0813e0414d433943/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4d49542d626c75652e737667)
 [![NPM Downloads](https://img.shields.io/npm/dt/sdpmin.svg?style=flat)](https://npmcharts.com/compare/sdpmin?minimal=true)
 [![Coverage Status](https://coveralls.io/repos/github/gregnb/sdpmin/badge.svg?branch=master)](https://coveralls.io/github/gregnb/sdpmin?branch=master)
 [![npm version](https://badge.fury.io/js/sdpmin.svg)](https://badge.fury.io/js/sdpmin)
