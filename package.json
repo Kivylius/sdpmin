@@ -6,6 +6,10 @@
   "main": "dist/index.js",
   "sideEffects": false,
   "homepage": " https://kivylius.github.io/sdpmin/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kivylius/sdpmin.git"
+  },
   "dependencies": {
     "sdp-transform": "^2.14.1"
   },
