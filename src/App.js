@@ -8,6 +8,8 @@ import { genWebRTC } from "./utils/genWebRTC.js";
 
 const App = () => {
   const [version, setVersion] = useState("sdpm");
+  const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
   const { zip, unzip } = getVerson(version);
 
   const [zipValue, setZipValue] = useState({ sdp: "" });
@@ -19,6 +21,7 @@ const App = () => {
       setZipValue(parsed);
     } catch (e) {
       toast.error(e.toString());
+      console.error(e);
     }
   };
 
@@ -31,6 +34,7 @@ const App = () => {
       setUnzipValue(value);
     } catch (e) {
       toast.error(e.toString());
+      console.error(e);
     }
   };
 
@@ -43,14 +47,18 @@ const App = () => {
 
   const onClickGen = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const { offer } = await genWebRTC();
+    setLoading(false);
     console.log({ offer });
     setZipValue(offer);
   };
 
   const onClickGenString = async (e) => {
     e.preventDefault();
+    setLoading2(true);
     const { offer } = await genWebRTC();
+    setLoading2(false);
     console.log({ offer });
     setUnzipValue(zip(offer));
   };
@@ -106,9 +114,15 @@ const App = () => {
             )
           </label>
           <textarea
-            placeholder="paste sdp json here (must be valid) or generate above"
+            placeholder={
+              loading
+                ? "generating..."
+                : "paste sdp json here (must be valid) or generate above"
+            }
             onChange={onChangeZip}
             value={zipValue.sdp ? JSON.stringify(zipValue) : ""}
+            className={loading ? "loading" : ""}
+            disabled={loading}
           ></textarea>
           <small>
             Length: {(zipValue.sdp ? JSON.stringify(zipValue) : "").length}
@@ -142,7 +156,13 @@ const App = () => {
             )
           </label>
           <input
-            placeholder="paste webrtc string here (must be valid) or generate above"
+            className={loading2 ? "loading" : ""}
+            disabled={loading2}
+            placeholder={
+              loading2
+                ? "generating..."
+                : "paste webrtc string here (must be valid) or generate above"
+            }
             onChange={onChangeUnzip}
             value={unzipValue}
           ></input>

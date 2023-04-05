@@ -48,6 +48,25 @@ html {
   padding: 10px;
 }
 
+.container textarea.loading,.container input.loading {
+  background-image: 
+    repeating-linear-gradient(
+      -45deg, 
+      transparent, 
+      transparent 1rem,
+      #ccc 1rem,
+      #ccc 2rem
+    );
+  background-size: 200% 200%;
+  animation: barberpole 10s linear infinite;
+}
+
+@keyframes barberpole {
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
 a {
   color: green;
 }
@@ -82,3 +101,5 @@ pre {
   /* overflow: scroll; */
   /* max-height: 300px; */
 }
+
+

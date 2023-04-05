@@ -3,10 +3,8 @@ import { parse, write } from "sdp-transform";
 const devider = "*";
 
 export const packV0 = (webRTCObj) => {
-  // console.log("webRTCObj", webRTCObj);
   const { type, sdp } = webRTCObj;
   const wrop = parse(sdp);
-  // console.log("wrop", wrop);
   if (wrop.version != 0) {
     alert("sdp version has changed and maybe not supported");
   }
@@ -22,6 +20,7 @@ export const packV0 = (webRTCObj) => {
     wrop.media[0].icePwd,
     wrop.media[0].iceUfrag,
     wrop.media[0].mid,
+    wrop.media[0].port,
     type,
   ];
   console.log("packv0", { type, devider, str, strPacked: str.join(devider) });
@@ -31,12 +30,22 @@ export const packV0 = (webRTCObj) => {
 export const unpackV0 = (webRTCString) => {
   const wrsp = webRTCString.split(devider);
   console.log("unpackV0.WRSP", wrsp);
-  const [verson, sessionVersion, candiates, hash, icePwd, ufrag, mid, type] =
-    wrsp;
+  const [
+    verson,
+    sessionVersion,
+    candiates,
+    hash,
+    icePwd,
+    ufrag,
+    mid,
+    port,
+    type,
+  ] = wrsp;
   const ips = candiates.split(",");
   console.log("unpackV0.ips", ips);
   const [globalip, globalport] = ips[0].split(":");
-  const [localip, localport] = ips[1].split(":");
+  const [localip, localport] = ips[1] || "".split(":");
+  console.log({ globalip, globalport, localip, localport });
 
   const sdp = {
     version: verson, // not usure
@@ -70,7 +79,7 @@ export const unpackV0 = (webRTCString) => {
         rtp: [], // not needed
         fmtp: [], // not needed
         type: "application", // not needed
-        port: 60392,
+        port: port,
         protocol: "UDP/DTLS/SCTP", // not needed
         payloads: "webrtc-datachannel", // not needed
         // not needed
@@ -90,19 +99,6 @@ export const unpackV0 = (webRTCString) => {
             // generation: 0, // not needed
             // "network-cost": 999, // not needed
           },
-          {
-            foundation: 0, // not needed
-            component: 1, // not needed
-            transport: "udp", // not needed (hardcoded)
-            priority: 1, // not needed
-            ip: localip,
-            port: localport,
-            type: "srflx", // not needed
-            raddr: "0.0.0.0", // not needed
-            rport: 0, // not needed
-            // generation: 0, // not needed
-            // "network-cost": 999, // not needed
-          },
         ],
         iceUfrag: ufrag,
         icePwd: icePwd,
@@ -118,6 +114,24 @@ export const unpackV0 = (webRTCString) => {
       },
     ],
   };
+
+  // push any extra candiates
+  if (localip && localport) {
+    sdp.media[0].candidates.push({
+      foundation: 0, // not needed
+      component: 1, // not needed
+      transport: "udp", // not needed (hardcoded)
+      priority: 1, // not needed
+      ip: localip,
+      port: localport,
+      type: "srflx", // not needed
+      raddr: "0.0.0.0", // not needed
+      rport: 0, // not needed
+      // generation: 0, // not needed
+      // "network-cost": 999, // not needed
+    });
+  }
+
   console.log("unpackV0", { type, sdp, sdpStr: write(sdp) });
   return { type: type, sdp: write(sdp) };
 };
